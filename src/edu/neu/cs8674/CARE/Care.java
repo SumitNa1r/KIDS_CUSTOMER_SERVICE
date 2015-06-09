@@ -1,6 +1,10 @@
 package edu.neu.cs8674.CARE;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -17,20 +21,22 @@ public class Care {
 	public void issue_Identification(RDFNode x, RDFNode y) {
 		System.out.println("Identification phase..");
 		Loop_elements e = new Issue_indetification();
-		e.directive(x,y);
-		/*
-		 * e.fact(); e.perception(); e.hypothesis();
-		 */
+		e.directive(x,y);		
+		e.fact(x,y); 
+		e.perception(x,y); 
+		e.hypothesis(x,y);
+		 
 
 	}
 
 	public void issue_verification(RDFNode x, RDFNode y) {
 		System.out.println("Verification phase..");
 		Loop_elements e = new Issue_verification();
-		e.directive(x,y);
-		/*
-		 * e.fact(); e.perception(); e.hypothesis();
-		 */
+		e.directive(x, y);
+		e.fact(x,y);
+		e.perception(x,y);
+		e.hypothesis(x,y);
+		 
 
 	}
 
@@ -38,9 +44,11 @@ public class Care {
 		System.out.println("Cause determination phase..");
 		Loop_elements e = new Cause_determination();
 		e.directive(x,y);
-		/*
-		 * e.fact(); e.perception(); e.hypothesis();
-		 */
+		
+		e.fact(x,y); 
+		e.perception(x,y); 
+		e.hypothesis(x,y);
+		 
 
 	}
 
@@ -48,9 +56,11 @@ public class Care {
 		System.out.println("Issue solution phase..");
 		Loop_elements e = new Solution_plan();
 		e.directive(x,y);
-		/*
-		 * e.fact(); e.perception(); e.hypothesis();
-		 */
+		
+		e.fact(x,y); 
+		e.perception(x,y); 
+		e.hypothesis(x,y);
+		 
 
 	}
 
@@ -71,23 +81,90 @@ public class Care {
 	}
 
 	private boolean isVerifiedSolution() {
-		// TODO Auto-generated method stub
-		return true;
+		String response = "";
+		System.out.println("Is solution Verified?");
+		System.out.println("Press Y to accept and N to reject");
+		
+		InputStreamReader ins = new InputStreamReader(System.in);
+		BufferedReader stdin = new BufferedReader(ins);
+		try {
+			response = stdin.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if("y".equals(response))
+			return true;
+		else
+			return false;
 	}
 
 	private boolean isCauseDeterminedWithhighConfidence() {
-		// TODO Auto-generated method stub
-		return true;
+		String response = "";
+		int i = get_random_number(100);
+		System.out.println("Root cause has been determined with " + i
+				+ " % confidence");
+		System.out.println("Press Y to accept and N to reject");
+
+		InputStreamReader ins = new InputStreamReader(System.in);
+		BufferedReader stdin = new BufferedReader(ins);
+		try {
+			response = stdin.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if ("y".equals(response))
+			return true;
+		else
+			return false;
 	}
 
+	public int get_random_number(int n) {
+		Random random = new Random();
+		return random.nextInt(n);
+	}
+	
 	private boolean isIssueVerified() {
-		// TODO Auto-generated method stub
-		return true;
+		String response = "";
+		System.out.println("Is issue verified?");
+		System.out.println("Press Y to accept and N to reject");
+		
+		InputStreamReader ins = new InputStreamReader(System.in);
+		BufferedReader stdin = new BufferedReader(ins);
+		try {
+			response = stdin.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if("y".equals(response))
+			return true;
+		else
+			return false;
 	}
 
 	private boolean isCauseDetermined() {
-		// TODO Auto-generated method stub
-		return true;
+		String response = "";
+		System.out.println("Is cause determined?");
+		System.out.println("Press Y to accept and N to reject");
+		
+		InputStreamReader ins = new InputStreamReader(System.in);
+		BufferedReader stdin = new BufferedReader(ins);
+		try {
+			response = stdin.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if("y".equals(response))
+			return true;
+		else
+			return false;
 	}
 
 	public static void main(String[] args) {

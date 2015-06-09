@@ -9,14 +9,14 @@ public class factDAO {
 	EntityManagerFactory factory = Persistence.createEntityManagerFactory("KIDS_CUSTOMER_SERVICE");
 	EntityManager em = factory.createEntityManager();
 	
-	public void create_directive(fact d)
+	public void create_fact(fact d)
 	{
 		em.getTransaction().begin();
 		em.persist(d);
 		em.getTransaction().commit();
 	}
 	
-	public void delete_directive(int id)
+	public void delete_fact(int id)
 	{
 		fact d = em.find(fact.class, id);
 		em.remove(d);

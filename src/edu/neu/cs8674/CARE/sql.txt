@@ -1,0 +1,7 @@
+CREATE TABLE `final_project`.`perception` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `issue` VARCHAR(255) NULL,
+  `feature` VARCHAR(255) NULL,
+  `activity` VARCHAR(255) NULL,
+  `time` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`));

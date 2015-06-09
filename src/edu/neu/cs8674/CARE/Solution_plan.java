@@ -18,20 +18,29 @@ public class Solution_plan implements Loop_elements {
 	}
 
 	@Override
-	public void fact() {
+	public void fact(RDFNode x, RDFNode y) {
 		System.out.println("Solution Plan: FACT");
+		fact f = new fact(0, y.toString(), x.toString(), "Solution Plan", get_date());
+		factDAO fct = new factDAO();
+		fct.create_fact(f);
 		
 	}
 
 	@Override
-	public void perception() {
+	public void perception(RDFNode x, RDFNode y) {
 		System.out.println("Solution Plan: perception");
+		perception p = new perception(0, y.toString(), x.toString(), "Solution Plan", get_date());
+		perceptionDAO pd = new perceptionDAO();
+		pd.create_perception(p);
 		
 	}
 
 	@Override
-	public void hypothesis() {
+	public void hypothesis(RDFNode x, RDFNode y) {
 		System.out.println("Solution Plan: hypothesis");
+		hypothesis h = new hypothesis(0, y.toString(), x.toString(), "Solution Plan", get_date());
+		hypothesisDAO hd = new hypothesisDAO();
+		hd.create_hypothesis(h);
 		
 	}
 	

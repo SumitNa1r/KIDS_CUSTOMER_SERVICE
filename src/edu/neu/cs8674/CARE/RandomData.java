@@ -121,14 +121,13 @@ public class RandomData extends Object {
 
 		// Random data generation for status
 		Model feature_model = ModelFactory.createDefaultModel();
-		Property id_property1 = feature_model.getProperty(feature_id);
-		Property name_property1 = feature_model.getProperty(feature_name);
-		Resource log = feature_model.createResource(Feature + "#" + 0)
-				.addProperty(id_property, 0 + "")
-				.addProperty(name_property, "Log file");
-		Resource stack_trace = feature_model.createResource(Feature + "#" + 1)
-				.addProperty(id_property, 1 + "")
-				.addProperty(name_property, "Stack trace");
+		for (int i = 0; i < 10; i++) {
+			Property id_property1 = feature_model.getProperty(feature_id);
+			Property name_property1 = feature_model.getProperty(feature_name);
+			Resource log = feature_model.createResource(Feature + "#" + i)
+					.addProperty(id_property, i + "")
+					.addProperty(name_property, "feature"+i);
+		}
 
 		// Random data generation for Issue(incident)
 		Model issue_model = ModelFactory.createDefaultModel();
@@ -146,7 +145,7 @@ public class RandomData extends Object {
 					.addProperty(product_property, product_model.getResource(Product+"#"+get_random_number(10)))
 					.addProperty(sub_cat1_property, sub_cat1_model.getResource(Sub_cat1+"#"+get_random_number(10)))
 					.addProperty(sub_cat2_property, sub_cat2_model.getResource(Sub_cat2+"#"+get_random_number(10)))
-					.addProperty(feature_property, feature_model.getResource(Feature+"#"+get_random_number(1)))
+					.addProperty(feature_property, feature_model.getResource(Feature+"#"+get_random_number(10)))
 					.addProperty(status_property, status_model.getResource(Status+"#1"));
 
 		}
