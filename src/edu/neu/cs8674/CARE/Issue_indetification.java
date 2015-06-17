@@ -8,7 +8,7 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 
 public class Issue_indetification implements Loop_elements {
 	@Override
-	public void directive(RDFNode x, RDFNode y) {
+	public void directive(String x, String y) {
 		System.out.println("Issue Identification: Directive");	
 		directive d = new directive(0, y.toString(), x.toString(), "Issue Identification", get_date());
 		directiveDAO dir = new directiveDAO();
@@ -17,7 +17,7 @@ public class Issue_indetification implements Loop_elements {
 	}
 
 	@Override
-	public void fact(RDFNode x, RDFNode y) {
+	public void fact(String x, String y) {
 		System.out.println("Issue Identification: FACT");	
 		fact f = new fact(0, y.toString(), x.toString(), "Issue Identification", get_date());
 		factDAO fct = new factDAO();
@@ -26,7 +26,7 @@ public class Issue_indetification implements Loop_elements {
 	}
 
 	@Override
-	public void perception(RDFNode x, RDFNode y) {
+	public void perception(String x, String y) {
 		System.out.println("Issue Identification: perception");	
 		perception p = new perception(0, y.toString(), x.toString(), "Issue Identification", get_date());
 		perceptionDAO pd = new perceptionDAO();
@@ -35,7 +35,7 @@ public class Issue_indetification implements Loop_elements {
 	}
 
 	@Override
-	public void hypothesis(RDFNode x, RDFNode y) {
+	public void hypothesis(String x, String y) {
 		System.out.println("Issue Identification: hypothesis");	
 		hypothesis h = new hypothesis(0, y.toString(), x.toString(), "Issue Identification", get_date());
 		hypothesisDAO hd = new hypothesisDAO();
