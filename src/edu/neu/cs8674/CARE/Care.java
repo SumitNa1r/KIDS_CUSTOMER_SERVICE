@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.hp.hpl.jena.query.Query;
@@ -13,14 +14,9 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-
 
 /**
  * @author SUMIT
@@ -28,13 +24,15 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
  */
 public class Care {
 	/**
-	 * Identify the issue.
-	 * This function converts the facts into perception using classification,
-	 * perception is then converted into hypothesis using Assessment,
-	 * hypothesis is converted into directive using resolution,
+	 * Identify the issue. This function converts the facts into perception
+	 * using classification, perception is then converted into hypothesis using
+	 * Assessment, hypothesis is converted into directive using resolution,
 	 * resolution is converted into fact using enactment.
-	 * @param x Issue Ticket id URI
-	 * @param y Feature URI
+	 * 
+	 * @param x
+	 *            Issue Ticket id URI
+	 * @param y
+	 *            Feature URI
 	 */
 	public void issue_Identification(String x, String y) {
 		System.out.println("Identification phase..");
@@ -48,13 +46,15 @@ public class Care {
 
 	
 	/**
-	 * Verify the issue.
-	 * This function converts the facts into perception using classification,
-	 * perception is then converted into hypothesis using Assessment,
-	 * hypothesis is converted into directive using resolution,
+	 * Verify the issue. This function converts the facts into perception using
+	 * classification, perception is then converted into hypothesis using
+	 * Assessment, hypothesis is converted into directive using resolution,
 	 * resolution is converted into fact using enactment.
-	 * @param x Issue Ticket id URI
-	 * @param y Feature URI
+	 * 
+	 * @param x
+	 *            Issue Ticket id URI
+	 * @param y
+	 *            Feature URI
 	 */
 	public void issue_verification(String x, String y) {
 		System.out.println("Verification phase..");
@@ -67,13 +67,15 @@ public class Care {
 	}
 
 	/**
-	 * Determine the cause of the issue.
-	 * This function converts the facts into perception using classification,
-	 * perception is then converted into hypothesis using Assessment,
-	 * hypothesis is converted into directive using resolution,
-	 * resolution is converted into fact using enactment.
-	 * @param x Issue Ticket id URI
-	 * @param y Feature URI
+	 * Determine the cause of the issue. This function converts the facts into
+	 * perception using classification, perception is then converted into
+	 * hypothesis using Assessment, hypothesis is converted into directive using
+	 * resolution, resolution is converted into fact using enactment.
+	 * 
+	 * @param x
+	 *            Issue Ticket id URI
+	 * @param y
+	 *            Feature URI
 	 */
 	public void issue_cause_determination(String x, String y) {
 		System.out.println("Cause determination phase..");
@@ -87,13 +89,15 @@ public class Care {
 	}
 
 	/**
-	 * Give a solution to issue.
-	 * This function converts the facts into perception using classification,
-	 * perception is then converted into hypothesis using Assessment,
-	 * hypothesis is converted into directive using resolution,
-	 * resolution is converted into fact using enactment.
-	 * @param x Issue Ticket id URI
-	 * @param y Feature URI
+	 * Give a solution to issue. This function converts the facts into
+	 * perception using classification, perception is then converted into
+	 * hypothesis using Assessment, hypothesis is converted into directive using
+	 * resolution, resolution is converted into fact using enactment.
+	 * 
+	 * @param x
+	 *            Issue Ticket id URI
+	 * @param y
+	 *            Feature URI
 	 */
 	public void issue_solution_plan(String x, String y) {
 		System.out.println("Issue solution phase..");
@@ -159,7 +163,9 @@ public class Care {
 
 	/**
 	 * Generates a random number.
-	 * @param n Any integer
+	 * 
+	 * @param n
+	 *            Any integer
 	 * @return Any random number between (0,n)
 	 */
 	public int get_random_number(int n) {
@@ -169,6 +175,7 @@ public class Care {
 
 	/**
 	 * Check with user if issue has been resolved
+	 * 
 	 * @return The boolean response from the user.
 	 */
 	public boolean isIssueVerified() {
@@ -218,11 +225,17 @@ public class Care {
 
 	/**
 	 * Checks if there is already a known issue to the incident ticket.
-	 * @param m Known issue model
-	 * @param p Product which has issue (Ms Office)
-	 * @param c1 Sub category1 (Ms Word)
-	 * @param c2 Sub category2 (ctrl+v, ctrl+c does not work)
-	 * @return The issue which has attributes product p, sub cat1 c1, sub cat2 c2
+	 * 
+	 * @param m
+	 *            Known issue model
+	 * @param p
+	 *            Product which has issue (Ms Office)
+	 * @param c1
+	 *            Sub category1 (Ms Word)
+	 * @param c2
+	 *            Sub category2 (ctrl+v, ctrl+c does not work)
+	 * @return The issue which has attributes product p, sub cat1 c1, sub cat2
+	 *         c2
 	 */
 	public static String if_exist_KI(Model m, String p,
 			String c1, String c2) {
@@ -254,17 +267,17 @@ public class Care {
 			while (rs.hasNext()) {
 
 				QuerySolution rb = rs.nextSolution();
-				RDFNode KI = rb.get("node");
+				//RDFNode KI = rb.get("node");
 				RDFNode is_valid = rb.get("is_valid");
 				RDFNode issue = rb.get("issue");
 				
-				//System.out.println(is_valid.toString()+"-*****************-");
 				if ("y".equals(is_valid.toString()))
-
-					// System.out.println("Problem ticket "+problem_ticket.toString()
-					// +" is associated with this issue ("+
-					// issue.toString()+")");
 					response = issue.toString();
+				else if("n".equals(is_valid.toString()))
+				{
+					response = "";
+					break;
+				}
 			}
 		} finally {
 			qexec.close();
@@ -274,9 +287,13 @@ public class Care {
 
 	/**
 	 * For each problem ticket it tries to find a solution.
-	 * @param problem_model Problem Model
-	 * @param user_model User Model
-	 * @param known_issue_model Known Issue Model
+	 * 
+	 * @param problem_model
+	 *            Problem Model
+	 * @param user_model
+	 *            User Model
+	 * @param known_issue_model
+	 *            Known Issue Model
 	 */
 	public static void solve_problem_tickets(Model problem_model, Model user_model, Model known_issue_model) {
 		System.out.println("Solving problem tickets");
@@ -312,9 +329,9 @@ public class Care {
 		for(String s : res){
 			String param[] = s.split(",,");
 			String r = param[0];
-			String p = param[1];
+/*			String p = param[1];
 			String c1 = param[2];
-			String c2 = param[3];
+			String c2 = param[3];*/
 			
 			String user = "http://cs8764/neu/edu/User#"+rd.get_random_number(10);
 			System.out.println("User "+user+" has been assigned the problem ticket");
@@ -334,18 +351,17 @@ public class Care {
 				}
 			}
 		}
-		
-/*		Resource r = problem_model.getResource(res.get(0).toString());
-		Property cost_property = problem_model.getProperty("http://cs8764/neu/edu/Problem/cost");
-		System.out.println(r.getProperty(cost_property).getObject());*/
-		
 	}
 
 	/**
 	 * Set the is_valid attribute of known issue to "n".
-	 * @param r Problem ticket
-	 * @param problem_model Problem Model
-	 * @param KI_model Known issue Model
+	 * 
+	 * @param r
+	 *            Problem ticket
+	 * @param problem_model
+	 *            Problem Model
+	 * @param KI_model
+	 *            Known issue Model
 	 */
 	public static void remove_KI(String r, Model problem_model, Model KI_model) {
 		Resource p = problem_model.getResource(r);
@@ -363,8 +379,11 @@ public class Care {
 
 	/**
 	 * Check with the user if change and cost associated with it is acceptable.
-	 * @param change Change that needs to be done
-	 * @param cost Cost for implementing that change
+	 * 
+	 * @param change
+	 *            Change that needs to be done
+	 * @param cost
+	 *            Cost for implementing that change
 	 * @return Boolean response from the user
 	 */
 	public static boolean is_change_acceptable(String change, String cost) {
@@ -391,9 +410,13 @@ public class Care {
 
 	/**
 	 * Change the status of an Incident ticket
-	 * @param issue_model Issue Model
-	 * @param y Issue ticket URI
-	 * @param n Status number
+	 * 
+	 * @param issue_model
+	 *            Issue Model
+	 * @param y
+	 *            Issue ticket URI
+	 * @param n
+	 *            Status number
 	 */
 	public static void change_status(Model issue_model,
 			String y, int n) {
@@ -404,6 +427,22 @@ public class Care {
 		r.addProperty(status_property, Status + "#" + n );		
 	}
 
+	/**
+	 * Given product and it sub categorizations it returns true if there exit a
+	 * problem ticket with same attributes, else returns false.
+	 * 
+	 * @param m
+	 *            Problem Model
+	 * @param p
+	 *            Product
+	 * @param c1
+	 *            sub category 1
+	 * @param c2
+	 *            sub category 2
+	 * @param issue
+	 *            Issue ticket URI
+	 * @return True if product already exists, else returns False
+	 */
 	public static boolean check_is_problem_ticket_present(Model m,String p,
 			String c1, String c2, String issue) {
 		
@@ -430,7 +469,6 @@ public class Care {
 				QuerySolution rb = rs.nextSolution();
 				RDFNode problem_ticket = rb.get("node");
 				
-				//System.out.println("Problem ticket "+problem_ticket.toString() +" is associated with this issue ("+ issue.toString()+")");
 				add_issue_to_problem_ticket(issue, problem_ticket,m);
 				return true;
 			}
@@ -442,9 +480,13 @@ public class Care {
 
 	/**
 	 * Add a new incident to problem ticket if its attributes match.
-	 * @param issue Issue URI
-	 * @param problem_ticket Problem Ticket
-	 * @param m Issue Model
+	 * 
+	 * @param issue
+	 *            Issue URI
+	 * @param problem_ticket
+	 *            Problem Ticket
+	 * @param m
+	 *            Issue Model
 	 */
 	public static void add_issue_to_problem_ticket(String issue,
 			RDFNode problem_ticket, Model m) {
@@ -456,17 +498,22 @@ public class Care {
 		String new_val = old_value+", "+ issue.toString();
 		
 		r.addProperty(issue_property, new_val);
-	    //System.out.println(r.getProperty(issue_property).getObject());
-		
 	}
 
 	/**
-	 * Get the count of incident tickets which have same attributes as current tickets.
-	 * @param y Issue Ticket URI
-	 * @param issue_model Issue Model
-	 * @param p Product
-	 * @param c1 Sub category 1
-	 * @param c2 Sub category 2
+	 * Get the count of incident tickets which have same attributes as current
+	 * tickets.
+	 * 
+	 * @param y
+	 *            Issue Ticket URI
+	 * @param issue_model
+	 *            Issue Model
+	 * @param p
+	 *            Product
+	 * @param c1
+	 *            Sub category 1
+	 * @param c2
+	 *            Sub category 2
 	 * @return count of incident tickets having same attributes
 	 */
 	public static int is_there_problem(String y, Model issue_model,
@@ -506,31 +553,63 @@ public class Care {
 		return count;
 	}
 	
-	public static void main(String[] args) {
-		//create Object of random data class
-		RandomData rd = new RandomData();
-		
-		//Generated all Models and data and store it in ArrayList
-		ArrayList<Model> Models = (ArrayList<Model>) rd.createRandomData();
-		
-		//Array of String to store each issue URI
-		ArrayList<String> issues = new ArrayList<String>();
-		
-		Model product_model = Models.get(0);
-		Model user_model = Models.get(1);
-		Model sub_cat1_model = Models.get(2);
-		Model sub_cat2_model = Models.get(3);
-		Model feature_model = Models.get(4);
-		Model status_model = Models.get(5);
-		Model issue_model = Models.get(6);
-		Model problem_model = rd.create_problem_model();
-		Model known_issue_model = rd.create_known_issue_model();
+	/**
+	 * Resolves the incident ticket using CARE loop.
+	 * 
+	 * @param issue_model
+	 *            Issue Model
+	 * @param x
+	 *            Issue Feature URI
+	 * @param y
+	 *            Issue URI
+	 * @param loop
+	 *            Object of class Care
+	 */
+	public static void run_loop(Model issue_model, String x, String y, Care loop)
+	{
+		while (true) {
+			change_status(issue_model, y, 2);
+			loop.issue_Identification(x, y);
+			loop.issue_verification(x, y);
+			if (loop.isIssueVerified()) {
+				change_status(issue_model, y, 3);
+				break;
+			}
+		}
 
-	/*	System.out.println(issue_model);
-		System.out.println("");*/
-		Care loop = new Care();
-		
-		//Query to fetch all issues from issue_model
+		boolean completed = false;
+		while (!completed) {
+			for (;;) {
+				loop.issue_cause_determination(x, y);
+				if (loop.isCauseDeterminedWithhighConfidence()) {
+					break;
+				}
+			}
+			for (;;) {
+				loop.issue_solution_plan(x, y);
+				if (loop.isVerifiedSolution()) {
+					change_status(issue_model, y, 4);
+					completed = true;
+					break;
+				}
+				if (!loop.isCauseDetermined()) {
+					completed = false;
+					break;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Find all issues from issue model and convert it into a string.
+	 * 
+	 * @param issue_model
+	 *            Issue Model
+	 * @return list of string s each string in s is an issue, and attributes are
+	 *         separated by ",,"
+	 */
+	public static List<String> get_all_issues(Model issue_model){
+		ArrayList<String> issues = new ArrayList<String>();
 		String queryString = "SELECT ?node ?feature ?product ?cat1 ?cat2 "
 				+ "WHERE {?node <http://cs8764/neu/edu/Issue/feature> ?feature. "
 				+ "?node <http://cs8764/neu/edu/Issue/product> ?product. "
@@ -563,86 +642,109 @@ public class Care {
 			qexec.close();
 		}
 		
-		//For each issue, run care loop
-		for(String s : issues){
+		return issues;
+	}
+	
+	/**
+	 * This function solves each incident tickets.
+	 * 
+	 * @param issue_model
+	 *            Issue Model
+	 * @param issues
+	 *            Issue detected from issue model and stored as
+	 *            list of strings
+	 * @param rd
+	 *            Object of RandomData
+	 * @param problem_model
+	 *            Problem Model
+	 * @param known_issue_model
+	 *            Known Issue Model
+	 */
+	public static void solve_incident_ticket(Model issue_model,
+			List<String> issues, RandomData rd, Model problem_model,
+			Model known_issue_model) {
+		Care loop = new Care();
+
+		//Model issue_model = Models.get(6);
+		for (String s : issues) {
 			String param[] = s.split(",,");
 			String x = param[0];
 			String y = param[1];
 			String p = param[2];
 			String c1 = param[3];
 			String c2 = param[4];
-			
-			/*
-			 * System.out.println(x.toString()+ "...."+ y.toString()+ "...."+
-			 * p.toString()+ "...."+ c1.toString()+"...."+c2.toString());
-			 * System.out.println("--------------------------------");
-			 */
-			
-			//Check if Solution to the issue exists
-			String issue = if_exist_KI(known_issue_model, p,
-					c1, c2);
-			
-			//if Solution already known display it
+
+			// Check if Solution to the issue exists
+			String issue = if_exist_KI(known_issue_model, p, c1, c2);
+
+			// if Solution already known display it
 			if (!"".equals(issue)) {
 				System.out
 						.println("There exist a know Issue, refer solution of Incident ticket "
 								+ issue + " for work around solution");
 			}
-			
-			//If solution does not exist, try to resolve it
+
+			// If solution does not exist, try to resolve it
 			else {
 				int count = is_there_problem(y, issue_model, p, c1, c2);
-				//If the issue is is found multiple times, create a problem ticket and know issue
+				// If the issue is is found multiple times, create a problem
+				// ticket and know issue
 				if (count > 2) {
 					if (!check_is_problem_ticket_present(problem_model, p, c1,
 							c2, y)) {
-						Resource known_issue = rd.create_KI_resource(known_issue_model, p.toString(),
-								c1.toString(), c2.toString(), y.toString());
+						Resource known_issue = rd.create_KI_resource(
+								known_issue_model, p.toString(), c1.toString(),
+								c2.toString(), y.toString());
 						rd.create_model_resource(problem_model, p.toString(),
-								c1.toString(), c2.toString(), y.toString(), known_issue);
-					}
-				}
-				
-				//CARE loop
-				while (true) {
-					change_status(issue_model, y, 2);
-					loop.issue_Identification(x, y);
-					loop.issue_verification(x, y);
-					if (loop.isIssueVerified()) {
-						change_status(issue_model, y, 3);
-						break;
+								c1.toString(), c2.toString(), y.toString(),
+								known_issue);
 					}
 				}
 
-				boolean completed = false;
-				while (!completed) {
-					for (;;) {
-						loop.issue_cause_determination(x, y);
-						if (loop.isCauseDeterminedWithhighConfidence()) {
-							break;
-						}
-					}
-					for (;;) {
-						loop.issue_solution_plan(x, y);
-						if (loop.isVerifiedSolution()) {
-							change_status(issue_model, y, 4);
-							completed = true;
-							break;
-						}
-						if (!loop.isCauseDetermined()) {
-							completed = false;
-							break;
-						}
-					}
-				}
+				// CARE loop
+				run_loop(issue_model, x, y, loop);
 			}
 		}
-		//System.out.println(problem_model +"\n");
+	}
+	
+	public static void main(String[] args) {
+		//create Object of random data class
+		RandomData rd = new RandomData();
+		
+		//Generated all Models and data and store it in ArrayList
+		ArrayList<Model> Models = (ArrayList<Model>) rd.createRandomData();
+	
+	/*  Model product_model = Models.get(0);
+		Model sub_cat1_model = Models.get(2);
+		Model sub_cat2_model = Models.get(3);
+		Model feature_model = Models.get(4);
+		Model status_model = Models.get(5);*/
+		
+		Model user_model = Models.get(1);
+		Model issue_model = Models.get(6);
+		Model issue_model1 = Models.get(7);
+		Model problem_model = rd.create_problem_model();
+		Model known_issue_model = rd.create_known_issue_model();
+		
+		//Fetch all issues from issue_model
+		ArrayList<String> issues = new ArrayList<String>();
+		issues = (ArrayList<String>) get_all_issues(issue_model);
+		
+		//For each issue, run care loop
+		solve_incident_ticket(issue_model, issues, rd, problem_model, known_issue_model);
 		
 		//Once all issue have been resolved, work on problem tickets
 		solve_problem_tickets(problem_model, user_model, known_issue_model);
 		
-		//System.out.println(problem_model +"\n");
+		// once the problem is resolved we again create a ticket having
+		// attributes(product, sub cat1, subcat2) same as that of resolved
+		// problem ticket. Since the problem is resolved known issue associated
+		// with it has also been removed. Now when we try to resolve this
+		// incident ticket, there would be no known issue and so CARE loop will
+		// be used to find the solution.
+		
+		ArrayList<String> issues1 = new ArrayList<String>();
+		issues1 = (ArrayList<String>) get_all_issues(issue_model1);
+		solve_incident_ticket(issue_model1, issues1, rd, problem_model, known_issue_model);		
 	}
-
 }

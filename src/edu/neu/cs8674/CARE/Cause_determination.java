@@ -12,6 +12,9 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
  */
 public class Cause_determination implements Loop_elements {
 
+	/* (non-Javadoc)
+	 * @see edu.neu.cs8674.CARE.Loop_elements#directive(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void directive(String x, String y) {
 		System.out.println("Cause Determination: Directive");
@@ -22,6 +25,9 @@ public class Cause_determination implements Loop_elements {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.neu.cs8674.CARE.Loop_elements#fact(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void fact(String x, String y) {
 		System.out.println("Cause Determination: FACT");
@@ -31,6 +37,9 @@ public class Cause_determination implements Loop_elements {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.neu.cs8674.CARE.Loop_elements#perception(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void perception(String x, String y) {
 		System.out.println("Cause Determination: perception");
@@ -40,6 +49,9 @@ public class Cause_determination implements Loop_elements {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.neu.cs8674.CARE.Loop_elements#hypothesis(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void hypothesis(String x, String y) {
 		System.out.println("Cause Determination: hypothesis");
@@ -49,6 +61,10 @@ public class Cause_determination implements Loop_elements {
 		
 	}
 	
+	/**
+	 * Get current date.
+	 * @return Current Date and time in String format
+	 */
 	public String get_date(){
 		DateFormat date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date dat = new Date();

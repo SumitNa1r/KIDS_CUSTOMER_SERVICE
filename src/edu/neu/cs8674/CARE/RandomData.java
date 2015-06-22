@@ -211,7 +211,31 @@ public class RandomData extends Object {
 			j++;
 
 		}
+		Model issue_model1 = ModelFactory.createDefaultModel();
+		Property id_property2 = issue_model1.getProperty(issue_id);
+		Property user_property = issue_model1.getProperty(user);
+		Property status_property = issue_model1.getProperty(status);
+		Property feature_property = issue_model1.getProperty(feature);
+		Property product_property = issue_model1.getProperty(product);
+		Property sub_cat1_property = issue_model1.getProperty(sub_cat1);
+		Property sub_cat2_property = issue_model1.getProperty(sub_cat2);
 
+		Resource issue1 = issue_model1
+				.createResource(Issue + "#" + j)
+				.addProperty(user_property,
+						user_model.getResource(User + "#1"))
+				.addProperty(product_property,
+						product_model.getResource(Product + "#1"))
+				.addProperty(sub_cat1_property,
+						sub_cat1_model.getResource(Sub_cat1 + "#1"))
+				.addProperty(sub_cat2_property,
+						sub_cat2_model.getResource(Sub_cat2 + "#1"))
+				.addProperty(feature_property,
+						feature_model.getResource(Feature + "#1"))
+				.addProperty(status_property,
+						status_model.getResource(Status + "#1"));
+		
+		
 		ArrayList<Model> return_value = new ArrayList<Model>();
 		return_value.add(product_model);
 		return_value.add(user_model);
@@ -220,6 +244,7 @@ public class RandomData extends Object {
 		return_value.add(feature_model);
 		return_value.add(status_model);
 		return_value.add(issue_model);
+		return_value.add(issue_model1);
 
 		// RDFDataMgr.write(System.out, product_model, Lang.NTRIPLES);
 		// RDFDataMgr.write(System.out, user_model, Lang.NTRIPLES);
@@ -357,7 +382,7 @@ public class RandomData extends Object {
 	 *            Problem Model
 	 * @param x
 	 *            Node containing Problem ticket
-	 * @param change
+	 * @param cost
 	 *            cost that would be incurred
 	 */
 	public void add_cost(Model m, RDFNode x, String cost) {
@@ -459,5 +484,6 @@ public class RandomData extends Object {
 		return Ki;
 
 	}
+	
 
-}
+	}

@@ -6,7 +6,14 @@ import java.util.Date;
 
 import com.hp.hpl.jena.rdf.model.RDFNode;
 
+/**
+ * @author SUMIT
+ *
+ */
 public class Issue_indetification implements Loop_elements {
+	/* (non-Javadoc)
+	 * @see edu.neu.cs8674.CARE.Loop_elements#directive(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void directive(String x, String y) {
 		System.out.println("Issue Identification: Directive");	
@@ -16,6 +23,9 @@ public class Issue_indetification implements Loop_elements {
 		dir.create_directive(d);
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.neu.cs8674.CARE.Loop_elements#fact(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void fact(String x, String y) {
 		System.out.println("Issue Identification: FACT");	
@@ -25,6 +35,9 @@ public class Issue_indetification implements Loop_elements {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.neu.cs8674.CARE.Loop_elements#perception(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void perception(String x, String y) {
 		System.out.println("Issue Identification: perception");	
@@ -34,6 +47,9 @@ public class Issue_indetification implements Loop_elements {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.neu.cs8674.CARE.Loop_elements#hypothesis(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public void hypothesis(String x, String y) {
 		System.out.println("Issue Identification: hypothesis");	
@@ -43,6 +59,10 @@ public class Issue_indetification implements Loop_elements {
 		
 	}	
 	
+	/**
+	 * Get current date.
+	 * @return Current Date and time in String format
+	 */
 	public String get_date(){
 		DateFormat date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date dat = new Date();
